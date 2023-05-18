@@ -1,15 +1,7 @@
 <template>
   <div class="column float-left">
     <router-link to="/" custom v-slot="{ navigate }">
-      <q-btn round color="info" @click="navigate" icon="home" class="text-h3 q-ma-md q-pa-md" role="link" />
-    </router-link>
-    <br/>
-    <router-link to="/weekly" custom v-slot="{ navigate }">
-      <q-btn round color="info" @click="navigate" icon="calendar_month" class="text-h3 q-ma-md q-pa-md" role="link" />
-    </router-link>
-    <br/>
-    <router-link to="/reminders" custom v-slot="{ navigate }">
-      <q-btn round color="info" @click="navigate" icon="event" class="text-h3 q-ma-md q-pa-md" role="link" />
+      <q-btn round color="info" @click="navigate" icon="home" class="text-h4 q-ma-md q-pa-md" role="link" />
     </router-link>
   </div>
   <div class="row flex-center q-mt-xl">

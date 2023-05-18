@@ -33,28 +33,6 @@
         </router-link>
         <br />
       </div>
-      <div class="q-ma-xl bg-warning round" style="height: 100px">
-        <router-link to="/weekly" custom v-slot="{ navigate }">
-          <span
-            @click="navigate"
-            class="text-h3 q-px-xl q-pt-lg row flex-center text-positive"
-            role="link"
-            >WEEKLY GOALS</span
-          >
-        </router-link>
-        <br />
-      </div>
-      <div class="q-ma-xl bg-warning round" style="height: 100px">
-        <router-link to="/reminders" custom v-slot="{ navigate }">
-          <span
-            @click="navigate"
-            class="text-h2 q-px-xl q-pt-lg row flex-center text-positive"
-            role="link"
-            >REMINDERS</span
-          >
-        </router-link>
-        <br />
-      </div>
     </div>
   </div>
 </template>
