@@ -1,9 +1,10 @@
 import { defineStore } from 'pinia'
 
 export const useArrayStore = defineStore('arrayStore', {
-    state: () => {
-        return {
-          name: [],
-        }
-      },
+  state: () => {
+    return {
+      name: '',
+      tasks: []
+    }
+  }
 })

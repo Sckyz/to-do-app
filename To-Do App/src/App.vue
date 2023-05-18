@@ -42,8 +42,11 @@ const mainDiv = ref(true)
 const header = ref(true)
 
 function start() {
-  arraystore.name.push(userName.value)
-  console.log(arraystore.name)
+  if (userName.value == '') {
+    alert('hey')
+    return
+  }
+  arraystore.name = userName.value
   homePage.value = true
   mainDiv.value = false
   header.value = false
@@ -52,12 +55,12 @@ function start() {
 
 <style scoped>
 .border {
-  border: #4d2b49 solid 10px;
+  border: #3b6c3f solid 10px;
 }
 .login {
-  border: #4d2b49 solid 6px;
+  border: #28452a solid 6px;
 }
 .line {
-  border-bottom: #682e61 solid 2px;
+  border-bottom: #2e6830 solid 2px;
 }
 </style>
