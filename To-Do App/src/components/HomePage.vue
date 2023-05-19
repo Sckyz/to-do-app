@@ -3,7 +3,7 @@
     <div class="column" style="width: 50%">
       <div class="q-pa-xl q-ml-xl q-mt-lg bg-secondary round" style="height: 300px; width: 76%">
         <span class="text-h3 line text-dark">Hello there {{ userName }}</span>
-        <q-img src="user.jpeg" style="max-width: 200px; max-height: 200px" class="float-right" />
+        <q-img src="user.jpeg" style="max-width: 200px; max-height: 200px" class="float-right round" />
         <br />
         <br />
         <span class="text-h4 text-dark">How are you today?</span>
@@ -14,7 +14,7 @@
           <q-img
             src="mush2.jpeg"
             style="max-width: 300px; max-height: 375px"
-            class="float-right q-ml-xl"
+            class="float-right q-ml-xl round"
           />
         </div>
       </div>
@@ -38,18 +38,19 @@
 </template>
 
 <script setup>
-import { useArrayStore } from '../stores/arrayStore'
+import { useToDoStore } from '../stores/todoStore'
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 
 const date = ref('2023/05/17')
-const store = useArrayStore()
+const store = useToDoStore()
 const userName = store.name
 </script>
 
 <style scoped>
 .line {
-  border-bottom: #52682e solid 2px;
+  border-bottom: #2e6830 solid 2px;
+  border-radius: 10px;
 }
 .round {
   border-radius: 20px;

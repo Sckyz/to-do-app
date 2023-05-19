@@ -5,7 +5,7 @@
     </div>
   </header>
   <div class="row justify-center" v-if="mainDiv">
-    <span class="login q-mt-xl q-pa-md bg-accent">
+    <span class="border q-mt-xl q-pa-md bg-accent">
       <p class="text-h2 line text-dark">Hi there, do you mind telling me your name?</p>
       <q-input
         class="q-mt-xl"
@@ -32,10 +32,12 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useArrayStore } from './stores/arrayStore'
+import { useToDoStore } from './stores/todoStore'
 import { RouterView } from 'vue-router'
+import { useQuasar } from 'quasar';
 
-const arraystore = useArrayStore()
+const $q = useQuasar();
+const todoStore = useToDoStore()
 const userName = ref('')
 const homePage = ref(false)
 const mainDiv = ref(true)
@@ -43,10 +45,14 @@ const header = ref(true)
 
 function start() {
   if (userName.value == '') {
-    alert('hey')
+    $q.notify({
+      message: "There nothing in there :(",
+      color: "top",
+      position: "center",
+    });
     return
   }
-  arraystore.name = userName.value
+  todoStore.name = userName.value
   homePage.value = true
   mainDiv.value = false
   header.value = false
@@ -56,11 +62,10 @@ function start() {
 <style scoped>
 .border {
   border: #3b6c3f solid 10px;
-}
-.login {
-  border: #28452a solid 6px;
+  border-radius: 20px;
 }
 .line {
-  border-bottom: #2e6830 solid 2px;
+  border-bottom: #2e6830 solid 1px;
+  border-radius: 10px;
 }
 </style>
