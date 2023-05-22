@@ -14,7 +14,7 @@ const router = createRouter({
       path: '/today',
       name: 'today',
       component: TodayList
-    },
+    }
   ]
 })
 

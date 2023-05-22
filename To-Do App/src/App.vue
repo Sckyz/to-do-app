@@ -1,13 +1,14 @@
 <template>
   <header class="row justify-center" v-if="header">
     <div class="border q-mt-xl q-pa-md bg-accent">
-      <span class="text-h1 text-dark">WeMentalize</span>
+      <span class="text-h1 text-dark font">WeMentalize</span>
     </div>
   </header>
   <div class="row justify-center" v-if="mainDiv">
     <span class="border q-mt-xl q-pa-md bg-accent">
-      <p class="text-h2 line text-dark">Hi there, do you mind telling me your name?</p>
+      <p class="text-h2 line text-dark font">Hi there, do you mind telling me your name?</p>
       <q-input
+        :class="font"
         class="q-mt-xl"
         filled
         v-model="userName"
@@ -15,9 +16,9 @@
         bg-color="primary"
         label="Type here..."
         placeholder="e.g; Taylor"
-      ></q-input>
+      />
       <q-btn
-        class="q-mt-xl"
+        class="q-mt-xl font"
         glossy
         push
         color="info"
@@ -34,9 +35,9 @@
 import { ref } from 'vue'
 import { useToDoStore } from './stores/todoStore'
 import { RouterView } from 'vue-router'
-import { useQuasar } from 'quasar';
+import { useQuasar } from 'quasar'
 
-const $q = useQuasar();
+const $q = useQuasar()
 const todoStore = useToDoStore()
 const userName = ref('')
 const homePage = ref(false)
@@ -46,10 +47,10 @@ const header = ref(true)
 function start() {
   if (userName.value == '') {
     $q.notify({
-      message: "There nothing in there :(",
-      color: "top",
-      position: "center",
-    });
+      message: 'There nothing in there :(',
+      color: 'top',
+      position: 'center'
+    })
     return
   }
   todoStore.name = userName.value
@@ -67,5 +68,8 @@ function start() {
 .line {
   border-bottom: #2e6830 solid 1px;
   border-radius: 10px;
+}
+.font {
+  font-family: Georgia;
 }
 </style>

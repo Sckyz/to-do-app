@@ -13,7 +13,7 @@
   </div>
   <div class="row flex-center q-mt-xl">
     <div class="q-pa-xl q-ma-lg bg-primary round" style="height: 730px; width: 80%">
-      <span class="text-h1 text-dark line">To Do</span>
+      <span class="text-h1 text-dark line font">To Do</span>
       <q-img
         src="mush.jpeg"
         style="max-width: 200px; max-height: 150px"
@@ -22,7 +22,7 @@
       <q-btn round color="negative" icon="add" class="float-right q-ma-lg" @click="addTask" />
       <q-input
         rounded
-        class="float-right q-mt-lg size"
+        class="float-right q-mt-lg size font"
         v-model="task"
         label="What Do I Need To Do Today?"
         placeholder="e.g; Go to the gym"
@@ -37,7 +37,7 @@
               round
               color="negative"
               icon="check"
-              class="q-mr-xs"
+              class="q-mr-xs font"
               @click="toggleCompleted(task.id)"
             />
             {{ task.item }}
@@ -52,30 +52,36 @@
               round
               color="negative"
               icon="edit"
-              class="float-right q-mr-xs"
+              class="float-right q-mr-xs font"
               @click="openModal"
             >
               <q-dialog v-model="modalIsOpen" persistent>
-                <q-card style="min-width: 350px">
+                <q-card style="min-width: 350px" class="bg-info text-dark">
                   <q-card-section class="row justify-center">
-                    <div class="text-h6">Change Task</div>
+                    <div class="text-h5 font text-dark">Change Task</div>
                   </q-card-section>
-
                   <q-card-section class="q-pt-xs">
                     <q-input
+                      class="text-h5 font"
+                      item-aligned
                       dense
                       v-model="inputUpdate"
                       autofocus
-                      @keyup.enter="store.upTask(inputUpdate, task.id)"
+                      @keyup.enter="store.upTask(task.id, inputUpdate)"
                     />
                   </q-card-section>
-
-                  <q-card-actions align="right" class="text-primary">
-                    <q-btn flat label="Cancelar" v-close-popup />
-                    <q-btn flat label="Confirmar" @click="store.upTask(inputUpdate, task.id)" v-close-popup />
+                  <q-card-actions align="right" class="text-dark font">
+                    <q-btn flat label="Cancel" v-close-popup />
+                    <q-btn
+                      flat
+                      label="Update Task"
+                      @click="store.upTask(task.id, inputUpdate)"
+                      v-close-popup
+                    />
                   </q-card-actions>
-                </q-card> </q-dialog
-            ></q-btn>
+                </q-card>
+              </q-dialog>
+            </q-btn>
           </span>
         </div>
       </q-scroll-area>
@@ -85,10 +91,10 @@
 
 <script setup>
 import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
 import { useToDoStore } from '../stores/todoStore'
-import { useQuasar } from 'quasar'
 import { storeToRefs } from 'pinia'
+import { RouterLink } from 'vue-router'
+import { useQuasar } from 'quasar'
 
 const store = useToDoStore()
 const { todoList } = storeToRefs(store)
@@ -135,5 +141,8 @@ function cleanField() {
 }
 .completed {
   text-decoration: line-through;
+}
+.font {
+  font-family: Georgia;
 }
 </style>

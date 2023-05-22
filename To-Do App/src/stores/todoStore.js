@@ -22,9 +22,8 @@ export const useToDoStore = defineStore('todoStore', {
       }
     },
     upTask(value, id) {
-      const todo = this.todoList.findIndex((obj) => obj.id == id)
+      const todo = this.todoList.find((obj) => obj.id === id)
       this.todoList[todo].item = value
-      
     }
   }
 })
