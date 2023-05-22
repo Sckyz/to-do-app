@@ -1,18 +1,11 @@
 <template>
-  <div class="column float-left">
-    <router-link to="/" custom v-slot="{ navigate }">
-      <q-btn
-        round
-        color="info"
-        @click="navigate"
-        icon="home"
-        class="text-h4 q-ma-md q-pa-md"
-        role="link"
-      />
-    </router-link>
-  </div>
   <div class="row flex-center q-mt-xl">
     <div class="q-pa-xl q-ma-lg bg-primary round" style="height: 730px; width: 80%">
+      <div class="column float-right">
+        <router-link to="/" custom v-slot="{ navigate }">
+          <q-btn round color="info" @click="navigate" icon="home" class="text-h4" role="link" />
+        </router-link>
+      </div>
       <span class="text-h1 text-dark line font">To Do</span>
       <q-img
         src="mush.jpeg"
@@ -26,7 +19,7 @@
         v-model="task"
         label="What Do I Need To Do Today?"
         placeholder="e.g; Go to the gym"
-        style="width: 55%"
+        style="width: 50%"
         standout="bg-info"
         @keyup.enter="addTask"
       />
@@ -53,7 +46,7 @@
               color="negative"
               icon="edit"
               class="float-right q-mr-xs font"
-              @click="openModal"
+              @click="openModal(task.id)"
             >
               <q-dialog v-model="modalIsOpen" persistent>
                 <q-card style="min-width: 350px" class="bg-info text-dark">
@@ -67,15 +60,16 @@
                       dense
                       v-model="inputUpdate"
                       autofocus
-                      @keyup.enter="store.upTask(task.id, inputUpdate)"
+                      @keyup.enter="upTask(inputUpdate, modalId)"
+                      v-close-popup
                     />
                   </q-card-section>
-                  <q-card-actions align="right" class="text-dark font">
+                  <q-card-actions align="center" class="text-dark font">
                     <q-btn flat label="Cancel" v-close-popup />
                     <q-btn
                       flat
                       label="Update Task"
-                      @click="store.upTask(task.id, inputUpdate)"
+                      @click="upTask(inputUpdate, modalId)"
                       v-close-popup
                     />
                   </q-card-actions>
@@ -91,17 +85,19 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useToDoStore } from '../stores/todoStore'
+import { useQuasar } from 'quasar'
 import { storeToRefs } from 'pinia'
 import { RouterLink } from 'vue-router'
-import { useQuasar } from 'quasar'
+import { useToDoStore } from '../stores/todoStore'
 
+const $q = useQuasar()
 const store = useToDoStore()
+
 const { todoList } = storeToRefs(store)
-const { toggleCompleted, deleteTodo, editTodo } = store
+const { toggleCompleted, deleteTodo, upTask } = store
 
 const task = ref('')
-const $q = useQuasar()
+const modalId = ref(null)
 const modalIsOpen = ref(false)
 
 function addTask() {
@@ -114,13 +110,13 @@ function addTask() {
     return
   }
   store.addTodo(task.value)
-  console.log(store.todoList)
   cleanField()
-  return { todoList, toggleCompleted, deleteTodo, editTodo }
+  return { todoList, toggleCompleted, deleteTodo, upTask }
 }
 
-function openModal() {
+function openModal(id) {
   modalIsOpen.value = !modalIsOpen.value
+  modalId.value = id
 }
 
 function cleanField() {

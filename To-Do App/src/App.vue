@@ -8,14 +8,14 @@
     <span class="border q-mt-xl q-pa-md bg-accent">
       <p class="text-h2 line text-dark font">Hi there, do you mind telling me your name?</p>
       <q-input
-        :class="font"
-        class="q-mt-xl"
+        class="q-mt-xl text-capitalize font"
         filled
         v-model="userName"
         color="dark"
         bg-color="primary"
         label="Type here..."
         placeholder="e.g; Taylor"
+        @keyup.enter="start"
       />
       <q-btn
         class="q-mt-xl font"
@@ -33,16 +33,17 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useToDoStore } from './stores/todoStore'
-import { RouterView } from 'vue-router'
 import { useQuasar } from 'quasar'
+import { RouterView } from 'vue-router'
+import { useToDoStore } from './stores/todoStore'
 
 const $q = useQuasar()
 const todoStore = useToDoStore()
+
 const userName = ref('')
-const homePage = ref(false)
-const mainDiv = ref(true)
 const header = ref(true)
+const mainDiv = ref(true)
+const homePage = ref(false)
 
 function start() {
   if (userName.value == '') {

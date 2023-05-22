@@ -14,7 +14,7 @@
       </div>
       <div>
         <div class="q-ma-xl row items-start">
-          <q-date style="width: 40%" v-model="calendar" />
+          <q-date style="width: 40%" v-model="calendar" today-btn="true" />
           <q-img
             src="mush2.jpeg"
             style="max-width: 300px; max-height: 375px"
@@ -28,11 +28,7 @@
       <br />
       <div class="q-ma-xl bg-warning round" style="height: 100px">
         <router-link to="/today" custom v-slot="{ navigate }">
-          <span
-            @click="navigate"
-            class="text-h3 q-px-xl q-pt-lg row flex-center text-positive font"
-            role="link"
-          >
+          <span @click="navigate" class="text-h3 q-px-xl q-pt-lg row flex-center text-positive font" role="link">
             TODAY TASKS
           </span>
         </router-link>
@@ -43,14 +39,14 @@
 </template>
 
 <script setup>
-import { useToDoStore } from '../stores/todoStore'
-import { RouterLink } from 'vue-router'
 import { date } from 'quasar'
+import { RouterLink } from 'vue-router'
+import { useToDoStore } from '../stores/todoStore'
 
-const timeStamp = Date.now()
-const calendar = date.formatDate(timeStamp, 'YYYY-MM-DDTHH:mm:ss.SSSZ')
 const store = useToDoStore()
 const userName = store.name
+const timeStamp = Date.now()
+const calendar = date.formatDate(timeStamp, 'YYYY-MM-DDTHH:mm:ss.SSSZ')
 </script>
 
 <style scoped>
