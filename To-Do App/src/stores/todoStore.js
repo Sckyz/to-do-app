@@ -21,7 +21,7 @@ export const useToDoStore = defineStore('todoStore', {
         todo.completed = !todo.completed
       }
     },
-    upTask(value, id) {
+    updateTask(value, id) {
       const todo = this.todoList.find((obj) => obj.id === id)
       if (todo) {
         todo.item = value
