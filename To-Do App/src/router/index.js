@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomePage from "../components/HomePage.vue"
-import TodayList from "../components/TodayList.vue"
+import HomePage from '../components/HomePage.vue'
+import TodayList from '../components/TodayList.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
